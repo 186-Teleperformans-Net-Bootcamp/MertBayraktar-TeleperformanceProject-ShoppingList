@@ -24,14 +24,14 @@ namespace Consumer.RabbitMq
                 Password = "guest"
             };
 
-            //we wont use USING because this will listen all the time!
+           
             var connection = connectionFactory.CreateConnection();
             var channel = connection.CreateModel();
 
-            //Creating the listening queue
+            
             channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: true);
 
-            //Triggering an event to consume the messages from the queue.
+            
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += (sender, args) =>
