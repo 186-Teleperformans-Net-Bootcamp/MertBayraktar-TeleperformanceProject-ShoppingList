@@ -17,8 +17,8 @@ using TeleperformanceProject.ShoppingList.Persistence.Contexts;
 
 namespace TeleperformanceProject.ShoppingList.API.Controllers
 {
-    //[Authorize(AuthenticationSchemes = "Admin")]
-    //[Authorize(Roles = "User,Admin")]
+    [Authorize(AuthenticationSchemes = "Admin")]
+    [Authorize(Roles = "User,Admin")]
 
     [Route("api/[controller]")]
     [ApiController]
@@ -61,8 +61,9 @@ namespace TeleperformanceProject.ShoppingList.API.Controllers
             GetShopListsQueryResponse response = await _mediator.Send(shopListsGetByCategoryIdQueryRequest);
             return Ok(response);
         }
-        
-        [HttpPost("[action]")]
+
+
+        [HttpPut("[action]")]
         public async Task<IActionResult> ShopListsIsCompleted([FromQuery]ShopListsIsCompleteCommandRequest shopListsIsCompleteCommandRequest)
         {
             ShopListsIsCompleteCommandResponse response = await _mediator.Send(shopListsIsCompleteCommandRequest);

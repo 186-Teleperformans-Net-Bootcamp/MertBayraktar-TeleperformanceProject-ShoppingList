@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TeleperformanceProject.ShoppingList.Application.Repositories;
 using TeleperformanceProject.ShoppingList.Application.Repositories.Categories;
 using TeleperformanceProject.ShoppingList.Application.Repositories.Products;
-
+using TeleperformanceProject.ShoppingList.Application.Repositories.RabbitMq;
 using TeleperformanceProject.ShoppingList.Application.Repositories.ShopLists;
 using TeleperformanceProject.ShoppingList.Application.Tokens;
 using TeleperformanceProject.ShoppingList.Domain.Entities;
@@ -18,6 +18,7 @@ using TeleperformanceProject.ShoppingList.Domain.Entities.Identity;
 using TeleperformanceProject.ShoppingList.Persistence.Contexts;
 
 using TeleperformanceProject.ShoppingList.Persistence.Repositories;
+using TeleperformanceProject.ShoppingList.Persistence.Repositories.RabbitMq;
 using TeleperformanceProject.ShoppingList.Persistence.Repositories.ReadRepositories.Categories;
 using TeleperformanceProject.ShoppingList.Persistence.Repositories.ReadRepositories.Products;
 using TeleperformanceProject.ShoppingList.Persistence.Repositories.ReadRepositories.ShopLists;
@@ -35,7 +36,7 @@ namespace TeleperformanceProject.ShoppingList.Persistence
             services.AddDbContext<ShoppingListDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddIdentity<User, Roles>().AddEntityFrameworkStores<ShoppingListDbContext>();
-            //services.AddIdentity<User, Roles>().AddEntityFrameworkStores<AdminDbContext>();
+            
             services.AddScoped<IProductWriteRepository, ProductsWriteRepository>();
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IListsWriteRepository, ShopListsWriteRepository>();
@@ -44,8 +45,8 @@ namespace TeleperformanceProject.ShoppingList.Persistence
             services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<HttpContextAccessor>();
-           
-
+            services.AddScoped<IPublisherService, PublisherService>();
+            services.AddScoped<IRabbitMqConnection, RabbitMqConnection>();
             return services;
 
             

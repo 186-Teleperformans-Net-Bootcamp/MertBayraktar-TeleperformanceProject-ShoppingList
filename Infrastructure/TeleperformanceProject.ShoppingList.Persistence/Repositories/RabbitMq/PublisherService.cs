@@ -31,7 +31,7 @@ namespace TeleperformanceProject.ShoppingList.Persistence.Repositories.RabbitMq
             channel.QueueBind(queue: queueName, exchange: "direct.test", routingKey: routingKey);
 
             //User is an object, for that changing that into Bytes..
-            var messageBody = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(user));
+            var messageBody = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(dto));
 
             //At last, we are publishing the message.
             channel.BasicPublish(exchange: "direct.test", routingKey: routingKey, basicProperties: null, body: messageBody);

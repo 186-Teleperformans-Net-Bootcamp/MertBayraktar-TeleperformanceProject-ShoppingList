@@ -40,7 +40,7 @@ namespace TeleperformanceProject.ShoppingList.Application.Features.Commands.Shop
             await _read.SaveAsync();
 
             var lists = _mapper.Map<ShopListDto>(list1);
-            _publisherService.Publish(dto:lists , queueName: "direct.email", routingKey: "email1");
+            
 
             return new()
             {

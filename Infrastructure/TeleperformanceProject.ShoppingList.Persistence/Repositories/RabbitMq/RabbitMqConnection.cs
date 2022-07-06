@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RabbitMQ.Client;
+using TeleperformanceProject.ShoppingList.Application.Repositories.RabbitMq;
 
 namespace TeleperformanceProject.ShoppingList.Persistence.Repositories.RabbitMq
 {
-    public class RabbitMqConnection
+    public class RabbitMqConnection : IRabbitMqConnection
     {
         public IConnection GetRabbitMqConnection()
         {

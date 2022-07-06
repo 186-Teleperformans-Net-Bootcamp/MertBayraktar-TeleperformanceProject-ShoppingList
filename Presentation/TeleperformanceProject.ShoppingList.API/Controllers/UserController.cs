@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeleperformanceProject.ShoppingList.Application.Features.Commands.Users.UserLogin;
@@ -8,6 +9,7 @@ using TeleperformanceProject.ShoppingList.Persistence.Contexts;
 
 namespace TeleperformanceProject.ShoppingList.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
